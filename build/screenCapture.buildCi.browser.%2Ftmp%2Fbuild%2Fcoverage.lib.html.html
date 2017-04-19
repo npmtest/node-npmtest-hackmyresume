@@ -1,0 +1,1090 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-hackmyresume/node_modules/hackmyresume/dist/generators/template-generator.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-hackmyresume">npmtest-hackmyresume (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-hackmyresume/node_modules/hackmyresume/dist/generators/template-generator.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">30.43% <small>(35 / 115)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">4.17% <small>(2 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">22.73% <small>(5 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">27.1% <small>(29 / 107)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> » <a href="index.html">node-npmtest-hackmyresume/node_modules/hackmyresume/dist/generators/</a> » template-generator.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+/**
+Definition of the TemplateGenerator class. TODO: Refactor
+@module generators/template-generator
+@license MIT. See LICENSE.md for details.
+ */
+&nbsp;
+(function() {
+  var BaseGenerator, EXTEND, FRESHTheme, FS, JRSTheme, MD, MKDIRP, PATH, TemplateGenerator, XML, _, _defaultOpts, _reg, createSymLinks, freeze, parsePath, unfreeze,
+    extend = function(child, parent) { for (var key in parent) { <span class="cstat-no" title="statement not covered">if (hasProp.call(parent, key)) <span class="cstat-no" title="statement not covered">child[key] = parent[key]; </span></span>} function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+&nbsp;
+  FS = require('fs-extra');
+&nbsp;
+  _ = require('underscore');
+&nbsp;
+  MD = require('marked');
+&nbsp;
+  XML = require('xml-escape');
+&nbsp;
+  PATH = require('path');
+&nbsp;
+  parsePath = require('parse-filepath');
+&nbsp;
+  MKDIRP = require('mkdirp');
+&nbsp;
+  BaseGenerator = require('./base-generator');
+&nbsp;
+  EXTEND = require('extend');
+&nbsp;
+  FRESHTheme = require('../core/fresh-theme');
+&nbsp;
+  JRSTheme = require('../core/jrs-theme');
+&nbsp;
+&nbsp;
+  /**
+  TemplateGenerator performs resume generation via local Handlebar or Underscore
+  style template expansion and is appropriate for text-based formats like HTML,
+  plain text, and XML versions of Microsoft Word, Excel, and OpenOffice.
+  @class TemplateGenerator
+   */
+&nbsp;
+  module.exports = TemplateGenerator = (function(superClass) {
+    extend(TemplateGenerator, superClass);
+&nbsp;
+&nbsp;
+    /** Constructor. Set the output format and template format for this
+    generator. Will usually be called by a derived generator such as
+    HTMLGenerator or MarkdownGenerator.
+     */
+&nbsp;
+    function TemplateGenerator(outputFormat, templateFormat, cssFile) {
+      TemplateGenerator.__super__.constructor.call(this, outputFormat);
+      this.tplFormat = templateFormat || outputFormat;
+      return;
+    }
+&nbsp;
+&nbsp;
+    /** Generate a resume using string-based inputs and outputs without touching
+    the filesystem.
+    @method invoke
+    @param rez A FreshResume object.
+    @param opts Generator options.
+    @returns {Array} An array of objects representing the generated output
+    files.
+     */
+&nbsp;
+    TemplateGenerator.prototype.invoke = <span class="fstat-no" title="function not covered">function(rez, opts) {</span>
+<span class="cstat-no" title="statement not covered">      var curFmt, results;</span>
+<span class="cstat-no" title="statement not covered">      opts = opts ? (this.opts = EXTEND(true, {}, _defaultOpts, opts)) : this.opts;</span>
+<span class="cstat-no" title="statement not covered">      curFmt = opts.themeObj.getFormat(this.format);</span>
+<span class="cstat-no" title="statement not covered">      curFmt.files = _.sortBy(curFmt.files, <span class="fstat-no" title="function not covered">function(fi) {</span></span>
+<span class="cstat-no" title="statement not covered">        return fi.ext !== 'css';</span>
+      });
+<span class="cstat-no" title="statement not covered">      results = curFmt.files.map(<span class="fstat-no" title="function not covered">function(tplInfo, idx) {</span></span>
+<span class="cstat-no" title="statement not covered">        var trx;</span>
+<span class="cstat-no" title="statement not covered">        if (tplInfo.action === 'transform') {</span>
+<span class="cstat-no" title="statement not covered">          trx = this.transform(rez, tplInfo.data, this.format, opts, opts.themeObj, curFmt);</span>
+<span class="cstat-no" title="statement not covered">          if (tplInfo.ext === 'css') {</span>
+<span class="cstat-no" title="statement not covered">            curFmt.files[idx].data = trx;</span>
+          } else {
+<span class="cstat-no" title="statement not covered">            tplInfo.ext === 'html';</span>
+          }
+        } else {
+&nbsp;
+        }
+<span class="cstat-no" title="statement not covered">        if (typeof opts.onTransform === "function") {</span>
+<span class="cstat-no" title="statement not covered">          opts.onTransform(tplInfo);</span>
+        }
+<span class="cstat-no" title="statement not covered">        return {</span>
+          info: tplInfo,
+          data: trx
+        };
+      }, this);
+<span class="cstat-no" title="statement not covered">      return {</span>
+        files: results
+      };
+    };
+&nbsp;
+&nbsp;
+    /** Generate a resume using file-based inputs and outputs. Requires access
+    to the local filesystem.
+    @method generate
+    @param rez A FreshResume object.
+    @param f Full path to the output resume file to generate.
+    @param opts Generator options.
+     */
+&nbsp;
+    TemplateGenerator.prototype.generate = <span class="fstat-no" title="function not covered">function(rez, f, opts) {</span>
+<span class="cstat-no" title="statement not covered">      var curFmt, genInfo, outFolder;</span>
+<span class="cstat-no" title="statement not covered">      this.opts = EXTEND(true, {}, _defaultOpts, opts);</span>
+<span class="cstat-no" title="statement not covered">      genInfo = this.invoke(rez, null);</span>
+<span class="cstat-no" title="statement not covered">      outFolder = parsePath(f).dirname;</span>
+<span class="cstat-no" title="statement not covered">      curFmt = opts.themeObj.getFormat(this.format);</span>
+<span class="cstat-no" title="statement not covered">      genInfo.files.forEach(<span class="fstat-no" title="function not covered">function(file) {</span></span>
+<span class="cstat-no" title="statement not covered">        var thisFilePath;</span>
+<span class="cstat-no" title="statement not covered">        file.info.orgPath = file.info.orgPath || '';</span>
+<span class="cstat-no" title="statement not covered">        thisFilePath = file.info.primary ? f : PATH.join(outFolder, file.info.orgPath);</span>
+<span class="cstat-no" title="statement not covered">        if (file.info.action !== 'copy' &amp;&amp; this.onBeforeSave) {</span>
+<span class="cstat-no" title="statement not covered">          file.data = this.onBeforeSave({</span>
+            theme: opts.themeObj,
+            outputFile: thisFilePath,
+            mk: file.data,
+            opts: this.opts,
+            ext: file.info.ext
+          });
+<span class="cstat-no" title="statement not covered">          if (!file.data) {</span>
+<span class="cstat-no" title="statement not covered">            return;</span>
+          }
+        }
+<span class="cstat-no" title="statement not covered">        if (typeof opts.beforeWrite === "function") {</span>
+<span class="cstat-no" title="statement not covered">          opts.beforeWrite(thisFilePath);</span>
+        }
+<span class="cstat-no" title="statement not covered">        MKDIRP.sync(PATH.dirname(thisFilePath));</span>
+<span class="cstat-no" title="statement not covered">        if (file.info.action !== 'copy') {</span>
+<span class="cstat-no" title="statement not covered">          FS.writeFileSync(thisFilePath, file.data, {</span>
+            encoding: 'utf8',
+            flags: 'w'
+          });
+        } else {
+<span class="cstat-no" title="statement not covered">          FS.copySync(file.info.path, thisFilePath);</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (typeof opts.afterWrite === "function") {</span>
+<span class="cstat-no" title="statement not covered">          opts.afterWrite(thisFilePath);</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (this.onAfterSave) {</span>
+<span class="cstat-no" title="statement not covered">          return this.onAfterSave({</span>
+            outputFile: fileName,
+            mk: file.data,
+            opts: this.opts
+          });
+        }
+      }, this);
+<span class="cstat-no" title="statement not covered">      createSymLinks(curFmt, outFolder);</span>
+<span class="cstat-no" title="statement not covered">      return genInfo;</span>
+    };
+&nbsp;
+&nbsp;
+    /** Perform a single resume resume transformation using string-based inputs
+    and outputs without touching the local file system.
+    @param json A FRESH or JRS resume object.
+    @param jst The stringified template data
+    @param format The format name, such as "html" or "latex"
+    @param cssInfo Needs to be refactored.
+    @param opts Options and passthrough data.
+     */
+&nbsp;
+    TemplateGenerator.prototype.transform = <span class="fstat-no" title="function not covered">function(json, jst, format, opts, theme, curFmt) {</span>
+<span class="cstat-no" title="statement not covered">      var eng, result;</span>
+<span class="cstat-no" title="statement not covered">      if (this.opts.freezeBreaks) {</span>
+<span class="cstat-no" title="statement not covered">        jst = freeze(jst);</span>
+      }
+<span class="cstat-no" title="statement not covered">      eng = require('../renderers/' + theme.engine + '-generator');</span>
+<span class="cstat-no" title="statement not covered">      result = eng.generate(json, jst, format, curFmt, opts, theme);</span>
+<span class="cstat-no" title="statement not covered">      if (this.opts.freezeBreaks) {</span>
+<span class="cstat-no" title="statement not covered">        result = unfreeze(result);</span>
+      }
+<span class="cstat-no" title="statement not covered">      return result;</span>
+    };
+&nbsp;
+    return TemplateGenerator;
+&nbsp;
+  })(BaseGenerator);
+&nbsp;
+  createSymLinks = <span class="fstat-no" title="function not covered">function(curFmt, outFolder) {</span>
+<span class="cstat-no" title="statement not covered">    if (curFmt.symLinks) {</span>
+<span class="cstat-no" title="statement not covered">      Object.keys(curFmt.symLinks).forEach(<span class="fstat-no" title="function not covered">function(loc) {</span></span>
+<span class="cstat-no" title="statement not covered">        var absLoc, absTarg, succeeded, type;</span>
+<span class="cstat-no" title="statement not covered">        absLoc = PATH.join(outFolder, loc);</span>
+<span class="cstat-no" title="statement not covered">        absTarg = PATH.join(PATH.dirname(absLoc), curFmt.symLinks[loc]);</span>
+<span class="cstat-no" title="statement not covered">        type = parsePath(absLoc).extname ? 'file' : 'junction';</span>
+<span class="cstat-no" title="statement not covered">        try {</span>
+<span class="cstat-no" title="statement not covered">          return FS.symlinkSync(absTarg, absLoc, type);</span>
+        } catch (_error) {
+<span class="cstat-no" title="statement not covered">          succeeded = false;</span>
+<span class="cstat-no" title="statement not covered">          if (_error.code === 'EEXIST') {</span>
+<span class="cstat-no" title="statement not covered">            FS.unlinkSync(absLoc);</span>
+<span class="cstat-no" title="statement not covered">            try {</span>
+<span class="cstat-no" title="statement not covered">              FS.symlinkSync(absTarg, absLoc, type);</span>
+<span class="cstat-no" title="statement not covered">              succeeded = true;</span>
+            } catch (_error) {}
+          }
+<span class="cstat-no" title="statement not covered">          if (!succeeded) {</span>
+<span class="cstat-no" title="statement not covered">            throw ex;</span>
+          }
+        }
+      });
+    }
+  };
+&nbsp;
+&nbsp;
+  /** Freeze newlines for protection against errant JST parsers. */
+&nbsp;
+  freeze = <span class="fstat-no" title="function not covered">function(markup) {</span>
+<span class="cstat-no" title="statement not covered">    markup.replace(_reg.regN, _defaultOpts.nSym);</span>
+<span class="cstat-no" title="statement not covered">    return markup.replace(_reg.regR, _defaultOpts.rSym);</span>
+  };
+&nbsp;
+&nbsp;
+  /** Unfreeze newlines when the coast is clear. */
+&nbsp;
+  unfreeze = <span class="fstat-no" title="function not covered">function(markup) {</span>
+<span class="cstat-no" title="statement not covered">    markup.replace(_reg.regSymR, '\r');</span>
+<span class="cstat-no" title="statement not covered">    return markup.replace(_reg.regSymN, '\n');</span>
+  };
+&nbsp;
+&nbsp;
+  /** Default template generator options. */
+&nbsp;
+  _defaultOpts = {
+    engine: 'underscore',
+    keepBreaks: true,
+    freezeBreaks: false,
+    nSym: '&amp;newl;',
+    rSym: '&amp;retn;',
+    template: {
+      interpolate: /\{\{(.+?)\}\}/g,
+      escape: /\{\{\=(.+?)\}\}/g,
+      evaluate: /\{\%(.+?)\%\}/g,
+      comment: /\{\#(.+?)\#\}/g
+    },
+    filters: {
+      out: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return txt;</span>
+      },
+      raw: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return txt;</span>
+      },
+      xml: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return XML(txt);</span>
+      },
+      md: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return MD(txt || '');</span>
+      },
+      mdin: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return MD(txt || '').replace(/^\s*&lt;p&gt;|&lt;\/p&gt;\s*$/gi, '');</span>
+      },
+      lower: <span class="fstat-no" title="function not covered">function(txt) {</span>
+<span class="cstat-no" title="statement not covered">        return txt.toLowerCase();</span>
+      },
+      link: <span class="fstat-no" title="function not covered">function(name, url) {</span>
+<span class="cstat-no" title="statement not covered">        if (url) {</span>
+<span class="cstat-no" title="statement not covered">          return '&lt;a href="' + url + '"&gt;' + name + '&lt;/a&gt;';</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          return name;</span>
+        }
+      }
+    },
+    prettify: {
+      indent_size: 2,
+      unformatted: ['em', 'strong', 'a'],
+      max_char: 80
+    }
+  };
+&nbsp;
+&nbsp;
+  /** Regexes for linebreak preservation. */
+&nbsp;
+  _reg = {
+    regN: new RegExp('\n', 'g'),
+    regR: new RegExp('\r', 'g'),
+    regSymN: new RegExp(_defaultOpts.nSym, 'g'),
+    regSymR: new RegExp(_defaultOpts.rSym, 'g')
+  };
+&nbsp;
+}).call(this);
+&nbsp;
+//# sourceMappingURL=template-generator.js.map
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 19 2017 12:35:06 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
